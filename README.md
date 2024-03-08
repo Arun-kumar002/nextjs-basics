@@ -23,7 +23,7 @@ client components:
 cmd:
     npx create-next-app name
 
-routing:
+Routing:
     file system based routing machanism.
     rules:
         All routes must be places inside the app folder
@@ -65,3 +65,33 @@ Layouts:
     
     to create a Layouts that must be named layout.js or layout.jsx   
 
+    group layout:
+        To selectively apply a layout to certain segments while leaving other unchanged.
+        
+
+Routing Metadata:
+    Ensuring proper SEO is crusial for visibility and attracting users
+    Next js introduced a meta data api which allow us to define meta data for each page.
+    Metadata ensure the accurate and relavent information displayed when the pages are shared.
+    
+    congigure metadata:
+        export static meta data object
+        export dynamic generate metadata function.
+
+    rules:
+        Both layout.tsx or page.tsx we can able define metadata if we define in layout it applies all pages using that layout if it define in page applies only for the page.
+
+        Metadata read in order from root level to final page level
+
+        when the metadata in multiple places for the same routes they got combined but page metadata will replace the layout metadata if they have same properties.
+
+        
+        static:
+            export const metadata={
+                    title:"About"
+            }
+        dynamic:
+            import { Metadata } from "next"
+            export const generateMetadata = ({ params }: { params: { productId: string } }): Metadata => {
+                    return { title: `Product ${params.productId}` }
+            }
