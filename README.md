@@ -95,3 +95,59 @@ Routing Metadata:
             export const generateMetadata = ({ params }: { params: { productId: string } }): Metadata => {
                     return { title: `Product ${params.productId}` }
             }
+
+Templates:
+    In next js if we write logics ex states in layout its shared to all of the pages if we navigate b/w the pages the states is preserverd that is default behaviour if we want to change the behaviour we can able to use templates.
+
+    Templates are similar to layouts in that they wrab each child layout or pages.
+
+    The template file supposed to create in the name of template.js or template.jsx 
+
+    similar to layout template will receive children prob which will render the nested routes.
+
+Loading UI:
+    This file is allow us to create a loading state that are displayed the user while specific route segment content is loading.
+
+    loading.tsx or loading.js
+
+Error handling:
+    error.tsx or error.js
+
+    Automatically wrap nested route segment in the error boundary.
+
+    Isolate the error affected segments while keep the rest of the application functional.
+
+
+Component hierarchy:
+
+    <Layout>
+        <Template>
+            <ErrorBoundary fallback={<Error/>}>
+                <Suspense fallback={<Loading/>}>
+                     <ErrorBoundary fallback={<NotFound/>}>
+                        <Page/>
+                     </ErrorBoundary>
+                <Suspense >
+            </ErrorBoundary>
+        </Template>
+    </Layout>
+
+Parallel routes:
+    paraller routes are advanced routing mechanism that allows for the simultaneous rendering of multiple pages in the same layout.
+
+    paraller routes in next.js are defined using the feature know as slots.
+    slot help structure our content in a modular fashion.
+    to define slot we use "@folder" naming convention.
+    each slots is then passed as a prop to the corresponding layout.tsx.
+
+    we can able to achieve this directly using components what is the benefit of paraller routes.
+        . Split the single layout into various slot makes code more managable
+        . Independent route handling
+        . Sub navigation
+
+        Independent route handling:
+            Each slots of our layout can have its own error and loading state.
+            Its helpful the scenarios like different section of the page load varing speed or encounter unique error.
+        Sub navigation
+            Each slot in our dashboard can essentially function as mini app complete with its own navigation and state      management.
+            
